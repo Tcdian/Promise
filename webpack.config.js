@@ -5,8 +5,8 @@ module.exports = {
     './src/index.js'
   ],
   output: {
-    path: __dirname,
-    filename: 'dist/bundle.js'
+    path: path.join(__dirname, 'dist'),
+    filename: 'bundle.js'
   },
   devServer: {
     port: 9000

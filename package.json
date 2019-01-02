@@ -1,0 +1,45 @@
+{
+  "name": "tcdian_promise",
+  "version": "1.0.0",
+  "description": "",
+  "main": "index.js",
+  "scripts": {
+    "dev": "webpack-dev-server --inline --progress --color --config build/webpack.dev.conf.js",
+    "build": "webpack --config build/webpack.prod.conf.js",
+    "lint": "tslint --project ./tsconfig.json"
+  },
+  "repository": {
+    "type": "git",
+    "url": "git+https://github.com/Tcdian/tcdian_promise.git"
+  },
+  "keywords": [
+    "tcdian",
+    "promise",
+    "typescript"
+  ],
+  "author": "tcdian",
+  "license": "MIT",
+  "bugs": {
+    "url": "https://github.com/Tcdian/tcdian_promise/issues"
+  },
+  "homepage": "https://github.com/Tcdian/tcdian_promise#readme",
+  "devDependencies": {
+    "awesome-typescript-loader": "^5.2.1",
+    "clean-webpack-plugin": "^1.0.0",
+    "html-webpack-plugin": "^3.2.0",
+    "husky": "^1.3.1",
+    "tslint": "^5.12.0",
+    "typescript": "^3.2.2",
+    "uglifyjs-webpack-plugin": "^2.1.1",
+    "webpack": "^4.28.3",
+    "webpack-cli": "^3.1.2",
+    "webpack-dev-server": "^3.1.14",
+    "webpack-merge": "^4.1.5"
+  },
+  "husky": {
+    "hooks": {
+      "pre-commit": "npm run lint",
+      "pre-push": "npm run lint"
+    }
+  }
+}

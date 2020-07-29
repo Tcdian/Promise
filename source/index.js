@@ -87,6 +87,72 @@ Promise.prototype.then = function (onFulfilled, onRejected) {
     return promise2;
 };
 
+Promise.prototype.catch = function (onRejected) {
+    return this.then(null, onRejected);
+};
+
+Promise.prototype.finally = function () {
+    const _this = this;
+    let promise2;
+    if (_this.status === 'fulfilled') {
+        promise2 = new Promise((resolve, reject) => {
+            setTimeout(() => {
+                try {
+                    resolve(_this.value);
+                } catch (error) {
+                    reject(error);
+                }
+            });
+        });
+    }
+    if (_this.status === 'rejected') {
+        promise2 = new Promise((resolve, reject) => {
+            setTimeout(() => {
+                try {
+                    reject(_this.reason);
+                } catch (error) {
+                    reject(error);
+                }
+            });
+        });
+    }
+    if (_this.status === 'pending') {
+        promise2 = new Promise((resolve, reject) => {
+            _this.fulfilledCallbacks.push(() => {
+                setTimeout(() => {
+                    try {
+                        resolve(_this.value);
+                    } catch (error) {
+                        reject(error);
+                    }
+                });
+            });
+            _this.rejectedCallbacks.push(() => {
+                setTimeout(() => {
+                    try {
+                        reject(_this.reason);
+                    } catch (error) {
+                        reject(error);
+                    }
+                });
+            });
+        });
+    }
+    return promise2;
+};
+
+Promise.resolve = function (value) {
+    return new Promise((resolve, reject) => {
+        resolve(value);
+    });
+};
+
+Promise.reject = function (reason) {
+    return new Promise((resolve, reject) => {
+        reject(reason);
+    });
+};
+
 function resolvePromise(promise2, x, resolve, reject) {
     if (promise2 === x) {
         reject(new TypeError('Chaining cycle detected for promise'));

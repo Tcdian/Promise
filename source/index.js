@@ -142,9 +142,14 @@ Promise.prototype.finally = function () {
 };
 
 Promise.resolve = function (value) {
-    return new Promise((resolve, reject) => {
-        resolve(value);
+    if (value instanceof Promise) {
+        return value;
+    }
+    let promise2;
+    promise2 = new Promise((resolve, reject) => {
+        resolvePromise(promise2, value, resolve, reject);
     });
+    return promise2;
 };
 
 Promise.reject = function (reason) {
@@ -152,6 +157,16 @@ Promise.reject = function (reason) {
         reject(reason);
     });
 };
+
+Promise.race = function (promises) {
+    return new Promise((resolve, reject) => {
+        for (let promise of promises) {
+            Promise.resolve(promise).then(resolve, reject);
+        }
+    });
+};
+
+Promise.all = function (promises) {};
 
 function resolvePromise(promise2, x, resolve, reject) {
     if (promise2 === x) {

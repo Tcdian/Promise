@@ -4,7 +4,8 @@
     "description": "",
     "main": "source/index.js",
     "scripts": {
-        "test": "promises-aplus-tests test/index.js"
+        "promises-aplus-tests": "promises-aplus-tests test/promises-aplus-tests.js",
+        "test": "jest --coverage --watch"
     },
     "repository": {
         "type": "git",
@@ -17,6 +18,7 @@
     },
     "homepage": "https://github.com/Tcdian/Promise#readme",
     "devDependencies": {
+        "jest": "^26.2.1",
         "promises-aplus-tests": "^2.1.2"
     }
 }

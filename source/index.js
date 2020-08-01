@@ -187,4 +187,32 @@ Promise.all = function (promises) {
     });
 };
 
+Promise.allSettled = function (promises) {
+    promises = [...promises];
+    return new Promise((resolve, reject) => {
+        if (promises.length === 0) {
+            resolve([]);
+            return;
+        }
+        const result = new Array(promises.length);
+        let remaining = promises.length;
+        promises.forEach((promise, index) => {
+            Promise.resolve(promise).then(
+                (value) => {
+                    result[index] = { status: 'fulfilled', value };
+                    if (--remaining === 0) {
+                        resolve(result);
+                    }
+                },
+                (reason) => {
+                    result[index] = { status: 'rejected', reason };
+                    if (--remaining === 0) {
+                        resolve(result);
+                    }
+                }
+            );
+        });
+    });
+};
+
 module.exports = Promise;

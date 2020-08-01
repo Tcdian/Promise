@@ -215,4 +215,23 @@ Promise.allSettled = function (promises) {
     });
 };
 
+Promise.any = function (promises) {
+    promises = [...promises];
+    return new Promise((resolve, reject) => {
+        if (promises.length === 0) {
+            resolve([]);
+            return;
+        }
+        let remaining = promises.length;
+        promises.forEach((promise) => {
+            Promise.resolve(promise).then(resolve, (reason) => {
+                if (--remaining === 0) {
+                    // todo ... AggregateError 未支持
+                    reject(new Error('No Promise in Promise.any was resolved'));
+                }
+            });
+        });
+    });
+};
+
 module.exports = Promise;

@@ -5,7 +5,7 @@
     "main": "source/index.js",
     "scripts": {
         "promises-aplus-tests": "promises-aplus-tests test/promises-aplus-tests.js",
-        "test": "jest --coverage --watch"
+        "test": "npm run promises-aplus-tests && jest"
     },
     "repository": {
         "type": "git",

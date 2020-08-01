@@ -1,7 +1,13 @@
 const Promise = require('../source');
 
-describe(`Promise.race –  setTimeout 的示例`, () => {
-    test(`两个resolve，p2 先完成`, () => {
+test('Promise.race的异步性', () => {
+    const p = Promise.race([Promise.resolve(33), Promise.resolve(44)]);
+    expect(p.status).toBe('pending');
+    return expect(p).resolves.toBe(33);
+});
+
+describe('Promise.race', () => {
+    test('两个resolve，p2 先完成', () => {
         const p1 = new Promise(function (resolve, reject) {
             setTimeout(resolve, 500, 'one');
         });
@@ -11,7 +17,7 @@ describe(`Promise.race –  setTimeout 的示例`, () => {
         return expect(Promise.race([p1, p2])).resolves.toBe('two');
     });
 
-    test(`resolve 先完成`, () => {
+    test('resolve 先完成', () => {
         const p3 = new Promise(function (resolve, reject) {
             setTimeout(resolve, 100, 'three');
         });
@@ -21,7 +27,7 @@ describe(`Promise.race –  setTimeout 的示例`, () => {
         return expect(Promise.race([p3, p4])).resolves.toBe('three');
     });
 
-    test(`reject 先完成`, () => {
+    test('reject 先完成', () => {
         const p5 = new Promise(function (resolve, reject) {
             setTimeout(resolve, 500, 'five');
         });

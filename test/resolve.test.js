@@ -1,21 +1,21 @@
 const Promise = require('../source');
 
-test(`使用静态Promise.resolve方法`, () => {
+test('使用静态Promise.resolve方法', () => {
     return expect(Promise.resolve('Success')).resolves.toBe('Success');
 });
 
-test(`resolve一个数组`, () => {
+test('resolve一个数组', () => {
     return expect(Promise.resolve([1, 2, 3])).resolves.toEqual([1, 2, 3]);
 });
 
-test(`resolve另一个promise`, () => {
+test('resolve另一个promise', () => {
     const original = Promise.resolve(33);
     const cast = Promise.resolve(original);
     expect(original).toBe(cast);
 });
 
-describe(`resolve thenable`, () => {
-    test(`Resolve一个thenable对象`, () => {
+describe('resolve thenable', () => {
+    test('Resolve一个thenable对象', () => {
         const p = Promise.resolve({
             then: function (onFulfill, onReject) {
                 onFulfill('fulfilled!');
@@ -25,7 +25,7 @@ describe(`resolve thenable`, () => {
         return expect(p).resolves.toBe('fulfilled!');
     });
 
-    test(`Thenable在callback之前抛出异常`, () => {
+    test('Thenable在callback之前抛出异常', () => {
         const thenable = {
             then: function (resolve) {
                 throw new TypeError('Throwing');
@@ -36,7 +36,7 @@ describe(`resolve thenable`, () => {
         return expect(p).rejects.toThrow('Throwing');
     });
 
-    test(`Thenable在callback之后抛出异常`, () => {
+    test('Thenable在callback之后抛出异常', () => {
         const thenable = {
             then: function (resolve) {
                 resolve('Resolving');

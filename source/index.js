@@ -226,7 +226,7 @@ Promise.any = function (promises) {
         promises.forEach((promise) => {
             Promise.resolve(promise).then(resolve, (reason) => {
                 if (--remaining === 0) {
-                    // todo ... AggregateError 未支持
+                    // AggregateError 未支持
                     reject(new Error('No Promise in Promise.any was resolved'));
                 }
             });

@@ -14,34 +14,36 @@ test(`resolve另一个promise`, () => {
     expect(original).toBe(cast);
 });
 
-test(`Resolve一个thenable对象`, () => {
-    const p = Promise.resolve({
-        then: function (onFulfill, onReject) {
-            onFulfill('fulfilled!');
-        },
+describe(`resolve thenable`, () => {
+    test(`Resolve一个thenable对象`, () => {
+        const p = Promise.resolve({
+            then: function (onFulfill, onReject) {
+                onFulfill('fulfilled!');
+            },
+        });
+        expect(p instanceof Promise).toBe(true);
+        return expect(p).resolves.toBe('fulfilled!');
     });
-    expect(p instanceof Promise).toBe(true);
-    return expect(p).resolves.toBe('fulfilled!');
-});
 
-test(`Thenable在callback之前抛出异常`, () => {
-    const thenable = {
-        then: function (resolve) {
-            throw new TypeError('Throwing');
-            resolve('Resolving');
-        },
-    };
-    const p = Promise.resolve(thenable);
-    return expect(p).rejects.toThrow('Throwing');
-});
+    test(`Thenable在callback之前抛出异常`, () => {
+        const thenable = {
+            then: function (resolve) {
+                throw new TypeError('Throwing');
+                resolve('Resolving');
+            },
+        };
+        const p = Promise.resolve(thenable);
+        return expect(p).rejects.toThrow('Throwing');
+    });
 
-test(`Thenable在callback之后抛出异常`, () => {
-    const thenable = {
-        then: function (resolve) {
-            resolve('Resolving');
-            throw new TypeError('Throwing');
-        },
-    };
-    const p = Promise.resolve(thenable);
-    return expect(p).resolves.toBe('Resolving');
+    test(`Thenable在callback之后抛出异常`, () => {
+        const thenable = {
+            then: function (resolve) {
+                resolve('Resolving');
+                throw new TypeError('Throwing');
+            },
+        };
+        const p = Promise.resolve(thenable);
+        return expect(p).resolves.toBe('Resolving');
+    });
 });

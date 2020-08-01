@@ -1,4 +1,5 @@
 const resolvePromise = require('./resolvePromise');
+
 function Promise(executor) {
     const _this = this;
     _this.status = 'pending';

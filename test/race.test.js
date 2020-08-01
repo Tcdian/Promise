@@ -1,4 +1,5 @@
 const Promise = require('../source');
+
 describe(`Promise.race –  setTimeout 的示例`, () => {
     test(`两个resolve，p2 先完成`, () => {
         const p1 = new Promise(function (resolve, reject) {

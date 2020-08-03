@@ -25,7 +25,11 @@ function Promise(executor) {
             });
         }
     }
-    executor(resolve, reject);
+    try {
+        executor(resolve, reject);
+    } catch (error) {
+        reject(error);
+    }
 }
 
 Promise.prototype.then = function (onFulfilled, onRejected) {

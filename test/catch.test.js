@@ -1,6 +1,6 @@
 const Promise = require('../source');
 
-test('抛出一个错误，大多数时候将调用catch方法', () => {
+test('捕获抛出的错误', () => {
     const p1 = new Promise(function (resolve, reject) {
         throw 'Uh-oh!';
     });

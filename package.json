@@ -19,6 +19,7 @@
     "homepage": "https://github.com/Tcdian/Promise#readme",
     "devDependencies": {
         "jest": "^26.2.1",
+        "prettier": "2.0.5",
         "promises-aplus-tests": "^2.1.2"
     }
 }

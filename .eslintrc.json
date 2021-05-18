@@ -4,7 +4,8 @@
         "commonjs": true,
         "es6": true
     },
-    "extends": ["eslint:recommended", "prettier"],
+    "plugins": ["jest"],
+    "extends": ["eslint:recommended", "prettier", "plugin:jest/recommended"],
     "globals": {
         "Atomics": "readonly",
         "SharedArrayBuffer": "readonly"
@@ -12,5 +13,7 @@
     "parserOptions": {
         "ecmaVersion": 2018
     },
-    "rules": {}
+    "rules": {
+        "no-unused-vars": ["error", { "vars": "all", "args": false, "ignoreRestSiblings": false }]
+    }
 }

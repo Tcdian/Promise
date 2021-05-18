@@ -1,5 +1,5 @@
 const promisesAplusTests = require('promises-aplus-tests');
-const Promise = require('../source');
+const Promise = require('../source/new');
 
 const deferred = function () {
     const dfd = {};

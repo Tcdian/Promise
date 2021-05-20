@@ -1,8 +1,8 @@
 const promisesAplusTests = require('promises-aplus-tests');
-const Promise = require('../source/new');
+const Promise = require('../source');
 
-const deferred = function () {
-    const dfd = {};
+let deferred = function () {
+    let dfd = {};
     dfd.promise = new Promise(function (resolve, reject) {
         dfd.resolve = resolve;
         dfd.reject = reject;

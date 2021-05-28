@@ -4,7 +4,7 @@ function Promise(executor) {
     this.reason = undefined;
     this.fulfilledCallbacks = [];
     this.rejectedCallbacks = [];
-    let resolve = (value) => {
+    const resolve = (value) => {
         if (this.state === 'pending') {
             this.state = 'fulfilled';
             this.value = value;
@@ -13,7 +13,7 @@ function Promise(executor) {
             });
         }
     };
-    let reject = (reason) => {
+    const reject = (reason) => {
         if (this.state === 'pending') {
             this.state = 'rejected';
             this.reason = reason;
@@ -178,7 +178,7 @@ Promise.all = function (promises) {
 
 Promise.allSettled = function (promises) {
     promises = [...promises];
-    return new Promise((resolve, reject) => {
+    return new Promise((resolve) => {
         let len = promises.length;
         if (len === 0) {
             resolve([]);

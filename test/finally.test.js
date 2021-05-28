@@ -19,6 +19,7 @@ describe('finally throw error', () => {
             })
         ).rejects.toEqual(new Error('finally error'));
     });
+
     test('rejected', async () => {
         expect.assertions(1);
         await expect(
@@ -38,6 +39,7 @@ describe('finally return Promise', () => {
             })
         ).resolves.toEqual(1);
     });
+
     test('rejected', async () => {
         expect.assertions(1);
         await expect(

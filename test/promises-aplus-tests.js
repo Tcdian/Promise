@@ -10,6 +10,6 @@ let deferred = function () {
     return dfd;
 };
 
-promisesAplusTests({ deferred }, function (err) {
+promisesAplusTests({ deferred }, function () {
     // All done; output is in the console. Or check `err` for number of failures.
 });

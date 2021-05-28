@@ -2,7 +2,7 @@ const Promise = require('../source');
 
 test('Promise.allSettled', async () => {
     expect.assertions(1);
-    let p = Promise.allSettled([
+    const p = Promise.allSettled([
         Promise.resolve(33),
         new Promise((resolve) => setTimeout(() => resolve(66), 0)),
         99,

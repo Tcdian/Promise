@@ -39,23 +39,24 @@ describe('Promise.all 的异步和同步', () => {
     });
 });
 
-test('Promise.all 的快速返回失败行为', async () => {
-    expect.assertions(1);
-    const p1 = new Promise((resolve) => {
-        setTimeout(resolve, 1000, 'one');
-    });
-    const p2 = new Promise((resolve) => {
-        setTimeout(resolve, 2000, 'two');
-    });
-    const p3 = new Promise((resolve) => {
-        setTimeout(resolve, 3000, 'three');
-    });
-    const p4 = new Promise((resolve) => {
-        setTimeout(resolve, 4000, 'four');
-    });
-    const p5 = new Promise((resolve, reject) => {
-        reject('reject');
-    });
+describe('Promise.all 快速返回失败', () => {
+    test('Promise.all 返回失败', async () => {
+        const p1 = new Promise((resolve) => {
+            setTimeout(resolve, 100, 'one');
+        });
+        const p2 = new Promise((resolve) => {
+            setTimeout(resolve, 200, 'two');
+        });
+        const p3 = new Promise((resolve) => {
+            setTimeout(resolve, 300, 'three');
+        });
+        const p4 = new Promise((resolve) => {
+            setTimeout(resolve, 400, 'four');
+        });
+        const p5 = new Promise((resolve, reject) => {
+            setTimeout(reject, 0, 'reject');
+        });
 
-    await expect(Promise.all([p1, p2, p3, p4, p5])).rejects.toBe('reject');
+        await expect(Promise.all([p1, p2, p3, p4, p5])).rejects.toBe('reject');
+    });
 });

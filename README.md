@@ -12,4 +12,4 @@
 
 测试结果：
 
-<img src="./static/test.jpg" width="520px">
+<img src="./static/success.jpg" width="520px">

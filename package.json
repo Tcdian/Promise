@@ -10,18 +10,19 @@
         "type": "git",
         "url": "git+https://github.com/Tcdian/Promise.git"
     },
-    "author": "tcdian",
+    "author": "",
     "license": "MIT",
     "bugs": {
         "url": "https://github.com/Tcdian/Promise/issues"
     },
     "homepage": "https://github.com/Tcdian/Promise#readme",
-    "devDependencies": {},
-    "dependencies": {
+    "devDependencies": {
         "eslint": "^8.3.0",
         "eslint-config-prettier": "^8.3.0",
-        "jest": "^27.3.1",
+        "eslint-plugin-jest": "^25.3.0",
+        "jest": "^27.4.1",
         "prettier": "^2.5.0",
         "promises-aplus-tests": "^2.1.2"
-    }
+    },
+    "dependencies": {}
 }
